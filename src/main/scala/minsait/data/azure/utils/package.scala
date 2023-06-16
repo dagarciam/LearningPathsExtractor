@@ -2,17 +2,15 @@ package minsait.data.azure
 
 import minsait.data.azure.constants.Constants.{OutputDir, UrlAzureExams}
 import org.apache.poi.common.usermodel.HyperlinkType
-import org.apache.poi.hssf.usermodel.HSSFPalette
-import org.apache.poi.ss.usermodel.{BorderStyle, CellStyle, CellType, CreationHelper, FillPatternType, Font}
-import org.apache.poi.xssf.usermodel.{DefaultIndexedColorMap, XSSFCell, XSSFColor, XSSFFont, XSSFHyperlink, XSSFSheet, XSSFWorkbook}
 import org.apache.poi.ss.usermodel.Font.{U_NONE, U_SINGLE}
-import org.apache.poi.ss.util.{CellRangeAddress, WorkbookUtil}
-import org.checkerframework.checker.units.qual.A
+import org.apache.poi.ss.usermodel.{CellStyle, FillPatternType}
+import org.apache.poi.ss.util.CellRangeAddress
+import org.apache.poi.xssf.usermodel._
 
 import java.awt.Color
 import java.io.{FileOutputStream, OutputStream}
 import scala.language.implicitConversions
-import scala.util.{Failure, Try}
+import scala.util.Try
 
 package object utils {
 

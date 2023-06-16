@@ -2,11 +2,9 @@ package minsait.data.azure
 
 import minsait.data.azure.constants.Constants._
 import minsait.data.azure.utils._
-import org.openqa.selenium.support.ui.WebDriverWait
-import org.openqa.selenium.{By, WebDriver, WebElement}
+import org.openqa.selenium.{By, WebDriver}
 
-import java.time.Duration
-import scala.jdk.CollectionConverters.*
+import scala.jdk.CollectionConverters._
 import scala.util.Try
 
 class Engine(driver: WebDriver, cert: String = DP300) {

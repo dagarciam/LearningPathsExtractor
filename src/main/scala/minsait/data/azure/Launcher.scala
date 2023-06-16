@@ -1,7 +1,6 @@
 package minsait.data.azure
 
 import org.openqa.selenium.chrome.ChromeDriver
-import org.openqa.selenium.support.ui.WebDriverWait
 
 import scala.util.{Failure, Success, Try}
 
