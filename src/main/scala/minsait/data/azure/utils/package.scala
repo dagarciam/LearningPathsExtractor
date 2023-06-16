@@ -75,6 +75,7 @@ package object utils {
     val unitStyle: CellStyle = getCellStyle(underline = U_SINGLE, fontColor = RGB(5, 99, 193))
     val meanLearningPathStyle: CellStyle = getCellStyle(bold = true, fill = true, bgColor = RGB(217, 225, 242), fmt = "00.00%")
     val meanModuleStyle: CellStyle = getCellStyle(bold = true, fill = true, bgColor = RGB(221, 235, 247), fmt = "00.00%")
+    val meanUnitStyle: CellStyle = getCellStyle(fmt = "00.00%")
 
     val sheet: XSSFSheet = workbook.createSheet(s"Temario $cert")
     sheet.createRow(0).createCell(3).setCellValue("Example")
@@ -113,9 +114,11 @@ package object utils {
           cell.setHyperlink(getLink(unit.href))
           cell.setCellStyle(unitStyle)
 
-          sheet.getRow(row)
+          val meanUnitCell = sheet.getRow(row)
             .createCell(3)
-            .setCellValue(0.0)
+
+          meanUnitCell.setCellValue(0.0)
+          meanUnitCell.setCellStyle(meanUnitStyle)
 
           tabBlankModule.setLastRow(row)
           tabBlankLearningPath.setLastRow(row)
@@ -133,7 +136,7 @@ package object utils {
     //sheet.setColumnHidden(3, true)
 
     Try {
-      val fileOut: OutputStream = new FileOutputStream(s"Temario $cert.xlsx")
+      val fileOut: OutputStream = new FileOutputStream(s"${cert.toUpperCase}.xlsx")
       workbook.write(fileOut)
     }
   }
