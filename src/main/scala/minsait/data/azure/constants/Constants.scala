@@ -20,4 +20,6 @@ object Constants {
   val MoreTextXPathExpression: String = "//span[@class='show-more-text']"
 
   val DP300: String = "dp-300"
+
+  val OutputDir: String = "src/main/resources/temarios"
 }

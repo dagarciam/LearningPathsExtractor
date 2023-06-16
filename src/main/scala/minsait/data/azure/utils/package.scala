@@ -1,6 +1,6 @@
 package minsait.data.azure
 
-import minsait.data.azure.constants.Constants.UrlAzureExams
+import minsait.data.azure.constants.Constants.{OutputDir, UrlAzureExams}
 import org.apache.poi.common.usermodel.HyperlinkType
 import org.apache.poi.hssf.usermodel.HSSFPalette
 import org.apache.poi.ss.usermodel.{BorderStyle, CellStyle, CellType, CreationHelper, FillPatternType, Font}
@@ -136,7 +136,7 @@ package object utils {
     //sheet.setColumnHidden(3, true)
 
     Try {
-      val fileOut: OutputStream = new FileOutputStream(s"${cert.toUpperCase}.xlsx")
+      val fileOut: OutputStream = new FileOutputStream(s"$OutputDir/${cert.toUpperCase}.xlsx")
       workbook.write(fileOut)
     }
   }
