@@ -1,7 +1,7 @@
 package minsait.data.azure
 
-import minsait.data.azure.constants.Constants.*
-import minsait.data.azure.utils.*
+import minsait.data.azure.constants.Constants._
+import minsait.data.azure.utils._
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
@@ -9,13 +9,13 @@ import java.time.Duration
 import scala.jdk.CollectionConverters.*
 import scala.util.Try
 
-class Engine(driver: WebDriver, cert: String = "dp-203") {
+class Engine(driver: WebDriver, cert: String = DP300) {
   val url: String = getUrlLearningPaths(cert)
   println(url)
   driver.get(url)
   Thread.sleep(3000)
   Try {
-    driver.findElement(By.xpath("//span[@class='show-more-text']")).click()
+    driver.findElement(By.xpath(MoreTextXPathExpression)).click()
   }
 
 
@@ -34,7 +34,7 @@ class Engine(driver: WebDriver, cert: String = "dp-203") {
         driver.get(learningPath.href)
         Thread.sleep(300)
         val time: String = driver
-          .findElement(By.id("time-remaining"))
+          .findElement(By.id(TimeRemainingId))
           .getText
           .replaceAll(Restantes, EmptyString)
 
@@ -48,7 +48,7 @@ class Engine(driver: WebDriver, cert: String = "dp-203") {
   private def getModules: Seq[Module] = {
 
     driver
-      .findElements(By.xpath("//div[@data-bi-name='module']"))
+      .findElements(By.xpath(ModuleXPathExpression))
       .asScala
       .map(module => {
 
@@ -56,7 +56,7 @@ class Engine(driver: WebDriver, cert: String = "dp-203") {
         val href = module.findElement(By.tagName(ATag)).getAttribute(HrefTag)
 
         val time = module
-          .findElement(By.className("module-time-remaining"))
+          .findElement(By.className(ModuleTimeRemainingClass))
           .getText.replaceAll(Restantes, EmptyString)
 
         Module(title, href, time)
@@ -67,13 +67,13 @@ class Engine(driver: WebDriver, cert: String = "dp-203") {
     driver.get(module.href)
     Thread.sleep(200)
     val units: Seq[LearningUnit] = driver
-      .findElement(By.id("unit-list"))
-      .findElements(By.tagName("li"))
+      .findElement(By.id(UnitListId))
+      .findElements(By.tagName(LiTag))
       .asScala
       .map(unit => {
-        val title = unit.findElement(By.tagName("a")).getText
-        val href = unit.findElement(By.tagName("a")).getAttribute(HrefTag)
-        val time = unit.findElement(By.tagName("span")).getText
+        val title = unit.findElement(By.tagName(ATag)).getText
+        val href = unit.findElement(By.tagName(ATag)).getAttribute(HrefTag)
+        val time = unit.findElement(By.tagName(SpanTag)).getText
 
         LearningUnit(title, href, time)
       }).toSeq
